@@ -39,11 +39,6 @@ class BookingsInteractor: NSObject, BookingInteractorInput {
         }
         
         let results = [currTrips, upcoming]
-        
-        let returnVal = Dictionary(uniqueKeysWithValues: zip(["Current","Upcoming"], [currTrips, upcoming]))
-        
-        //output?.didLoadData(trips: returnVal)
-        
         output?.didLoadTripData(trips: results)
     }
 

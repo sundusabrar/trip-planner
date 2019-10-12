@@ -28,6 +28,9 @@
 		1D2989A1235223480040652E /* PastTripsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989A0235223480040652E /* PastTripsRouter.swift */; };
 		1D2989A42352271F0040652E /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989A32352271F0040652E /* Trip.swift */; };
 		1D2989A7235264FF0040652E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989A6235264FF0040652E /* DataManager.swift */; };
+		1D2989A923528FA70040652E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989A823528FA60040652E /* CoreLocation.framework */; };
+		1D2989AB23528FAD0040652E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AA23528FAD0040652E /* MapKit.framework */; };
+		1D2989AD23528FBB0040652E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AC23528FBB0040652E /* CoreGraphics.framework */; };
 		7722DA4F3BB25DE0B422EA76 /* Pods_tripplanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		1D2989A0235223480040652E /* PastTripsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTripsRouter.swift; sourceTree = "<group>"; };
 		1D2989A32352271F0040652E /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		1D2989A6235264FF0040652E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1D2989A823528FA60040652E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1D2989AA23528FAD0040652E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1D2989AC23528FBB0040652E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4ADB43CF04E75892ADEF2AB3 /* Pods-tripplanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.debug.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.debug.xcconfig"; sourceTree = "<group>"; };
 		BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripplanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1C7145A5A5F5ABCF53F2C9 /* Pods-tripplanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.release.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D2989AD23528FBB0040652E /* CoreGraphics.framework in Frameworks */,
+				1D2989AB23528FAD0040652E /* MapKit.framework in Frameworks */,
+				1D2989A923528FA70040652E /* CoreLocation.framework in Frameworks */,
 				7722DA4F3BB25DE0B422EA76 /* Pods_tripplanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +212,9 @@
 		2922ACBEE9981FEC3DF67F93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D2989AC23528FBB0040652E /* CoreGraphics.framework */,
+				1D2989AA23528FAD0040652E /* MapKit.framework */,
+				1D2989A823528FA60040652E /* CoreLocation.framework */,
 				BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */,
 			);
 			name = Frameworks;

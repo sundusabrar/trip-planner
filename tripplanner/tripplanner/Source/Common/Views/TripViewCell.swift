@@ -10,6 +10,11 @@ import UIKit
 
 class TripViewCell: UITableViewCell {
 
+    @IBOutlet weak var tripName: UILabel!
+    @IBOutlet weak var destinationLabel: UILabel!
+    @IBOutlet weak var departureTime: UILabel!
+    @IBOutlet weak var arrivalTime: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

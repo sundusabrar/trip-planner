@@ -9,22 +9,22 @@
 import Foundation
 
 protocol PastTripModuleInterface {
-
+    func loadData()
 }
 protocol PastTripInteractorOutput {
-    
+    func didLoadTripData(trips: [TripViMo])
 }
 
 class PastTripPresenter: NSObject, PastTripModuleInterface, PastTripInteractorOutput {
     var pastTripView: PastTripViewInterface?
     var pastTripInteractorInput: PastTripInteractorInput?
     var pastTripRouter: PastTripRouter?
-    
-    func discardView() {
-       
+
+    func loadData() {
+        pastTripInteractorInput!.loadData()
     }
     
-    func addTripDetail() {
-        
+    func didLoadTripData(trips: [TripViMo]) {
+        pastTripView?.didLoadTrips(trips: trips)
     }
 }

@@ -47,6 +47,15 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
         return dataSource.count
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return String(format: "Current trips: \(dataSource[section].count)")
+        }
+        else {
+            return String(format: "Upcoming Trips: \(dataSource[section].count)")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].count
     }
@@ -57,6 +66,12 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("ERROR: culd not deque cell")
         }
 
+        let obj = dataSource[indexPath.section][indexPath.row]
+        cell.tripName.text = obj.source
+        cell.destinationLabel.text = obj.destination
+        cell.departureTime.text = obj.arrivalTime.toString()
+        cell.arrivalTime.text = obj.arrivalTime.toString()
+        
         return cell
     }
 }

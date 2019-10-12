@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 protocol AddTripViewInterface {
     func presentSuccessAlert()
@@ -33,6 +35,8 @@ class AddTripView: UIViewController, UITextFieldDelegate {
     
     var activeField: UITextField?
     
+    @IBOutlet weak var mapView: MKMapView!
+   
     var tripViMo = TripViMo()
     
     var eventHandler: AddTripModuleInterface?
@@ -62,6 +66,67 @@ class AddTripView: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        mapView.delegate = self
+        
+        // 2. Locations to be shown on mapview
+        let sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
+        let destinationLocation = CLLocationCoordinate2D(latitude: 40.748441, longitude: -73.985564)
+        
+        // 3. Placemarks
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        
+        // 4. Routing Information
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // 5. Annotations to be dropped on map
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = "Times Square"
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+        }
+        
+        
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.title = "Empire State Building"
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        // 6.
+        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+        
+        // 7.
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        // 8.
+        directions.calculate {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
     }
     
     @objc func handleDatePicker() {
@@ -124,6 +189,20 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         }
     }
 }
+
+extension AddTripView: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+}
+
+//extension AddTripView: CLLocationManager {
+//    
+//}
 
 extension AddTripView: AddTripViewInterface {
     func presentSuccessAlert() {

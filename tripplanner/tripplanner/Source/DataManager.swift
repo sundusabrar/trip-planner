@@ -23,14 +23,22 @@ class DataManager {
     }
     
     func fetchCurrentTrips() -> [Trip] {
-        let now = Date()
-        let results = database.objects(Trip.self).filter("departureTime == %@", now)
+        let todayStart = Date().dateAtStartOf(.day)
+        let todayEnd = Date().dateAtEndOf(.day)
+        let results = database.objects(Trip.self).filter("departureTime BETWEEN {%@, %@}", todayStart, todayEnd)
+        //filter("departureTime == %@", now)
         return Array(results)
     }
     
     func fetchUpcomingTrips() -> [Trip] {
-        let now = Date()
-        let results = fetchAllTrips()//database.objects(Trip.self).filter("departureTime > %@", now)
+        let now = Date().dateAtEndOf(.day)
+        let results = database.objects(Trip.self).filter("departureTime > %@", now)
+        return Array(results)
+    }
+    
+    func fetchAllPastTrips() -> [Trip] {
+        let now = Date().dateAtStartOf(.day)
+        let results = database.objects(Trip.self).filter("departureTime < %@", now)
         return Array(results)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         configureAppDependencies()
+        
+        //generateDummyData()
+        
         return true
+    }
+    
+    func generateDummyData() {
+        //create past trips
+        var tripArr = [Trip]()
+        for index in (1..<8).reversed() {
+            let d1 = Date() - (index).days
+            let d2 = Date() - (index-1).days
+            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            let pt1 = Trip(value: pastTrip1)
+            
+            tripArr.append(pt1)
+        }
+        
+        //create current trips
+        for index in (1..<3) {
+            let d1 = Date()
+            let d2 = Date() + (index).days
+            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            let pt1 = Trip(value: pastTrip1)
+            
+            tripArr.append(pt1)
+        }
+        
+        //create upcoming trips
+        for index in (1..<6) {
+            let d1 = Date() + (index).days
+            let d2 = Date() + (index+1).days
+            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            let pt1 = Trip(value: pastTrip1)
+            
+            tripArr.append(pt1)
+        }
+        DataManager.sharedInstance.addTrip(objects: tripArr)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
