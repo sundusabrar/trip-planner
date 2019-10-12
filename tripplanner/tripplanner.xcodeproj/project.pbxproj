@@ -13,7 +13,7 @@
 		1D2989712351C0470040652E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D29896F2351C0470040652E /* Main.storyboard */; };
 		1D2989732351C0480040652E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D2989722351C0480040652E /* Assets.xcassets */; };
 		1D2989762351C0480040652E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D2989742351C0480040652E /* LaunchScreen.storyboard */; };
-		1D2989882351D18E0040652E /* BookingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989872351D18E0040652E /* BookingsProtocol.swift */; };
+		1D2989882351D18E0040652E /* BookingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989872351D18E0040652E /* BookingsPresenter.swift */; };
 		1D29898A2351D1DC0040652E /* BookingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989892351D1DC0040652E /* BookingsInteractor.swift */; };
 		1D29898D2351D6190040652E /* TripViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D29898B2351D6190040652E /* TripViewCell.swift */; };
 		1D29898E2351D6190040652E /* TripViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D29898C2351D6190040652E /* TripViewCell.xib */; };
@@ -29,7 +29,7 @@
 		1D2989722351C0480040652E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D2989752351C0480040652E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D2989772351C0480040652E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D2989872351D18E0040652E /* BookingsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsProtocol.swift; sourceTree = "<group>"; };
+		1D2989872351D18E0040652E /* BookingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsPresenter.swift; sourceTree = "<group>"; };
 		1D2989892351D1DC0040652E /* BookingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsInteractor.swift; sourceTree = "<group>"; };
 		1D29898B2351D6190040652E /* TripViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewCell.swift; sourceTree = "<group>"; };
 		1D29898C2351D6190040652E /* TripViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripViewCell.xib; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				1D29896B2351C0470040652E /* BookingsView.swift */,
-				1D2989872351D18E0040652E /* BookingsProtocol.swift */,
+				1D2989872351D18E0040652E /* BookingsPresenter.swift */,
 				1D2989892351D1DC0040652E /* BookingsInteractor.swift */,
 			);
 			path = "Current&Upcoming";
@@ -279,7 +279,7 @@
 				1D29898A2351D1DC0040652E /* BookingsInteractor.swift in Sources */,
 				1D29896A2351C0470040652E /* AppDelegate.swift in Sources */,
 				1D29896C2351C0470040652E /* BookingsView.swift in Sources */,
-				1D2989882351D18E0040652E /* BookingsProtocol.swift in Sources */,
+				1D2989882351D18E0040652E /* BookingsPresenter.swift in Sources */,
 				1D29898D2351D6190040652E /* TripViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

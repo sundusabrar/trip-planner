@@ -8,15 +8,17 @@
 
 import UIKit
 
-protocol BookingsViewProtocol {
+protocol BookingsViewInterface {
     
 }
 
-class BookingsView: UIViewController, BookingsViewProtocol {
+class BookingsView: UIViewController, BookingsViewInterface {
 
+    
+    var presenter: BookingsModuleProtocol?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTripButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

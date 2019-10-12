@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+protocol BookingsInteractorOutput {
+    
+}
+class BookingsInteractor: NSObject {
+    var output: BookingsInteractorOutput?
+}
