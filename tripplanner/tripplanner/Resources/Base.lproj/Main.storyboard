@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bookings View-->
+        <!--Bookings View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="BookingsView" customModule="tripplanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="BookingsViewController" customModule="tripplanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JtF-pz-d03"/>
+                        <viewControllerLayoutGuide type="bottom" id="vX0-OO-KtA"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,20 +38,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addNewTrip:" destination="9pv-A4-QxB" eventType="touchUpInside" id="2hR-NR-dMm"/>
+                                    <action selector="addTripButonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="3PL-vb-mDT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="MAW-SQ-lTe" secondAttribute="bottom" constant="25" id="6TW-o7-rRe"/>
+                            <constraint firstItem="vX0-OO-KtA" firstAttribute="top" secondItem="MAW-SQ-lTe" secondAttribute="bottom" constant="25" id="6TW-o7-rRe"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="NlE-CW-8fw"/>
-                            <constraint firstItem="Xhj-LD-Kwg" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="ffR-hy-jD4"/>
-                            <constraint firstItem="Xhj-LD-Kwg" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="ftW-Nn-ubf"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="MAW-SQ-lTe" secondAttribute="trailing" constant="42" id="plB-df-x9C"/>
+                            <constraint firstItem="Xhj-LD-Kwg" firstAttribute="top" secondItem="JtF-pz-d03" secondAttribute="bottom" id="ffR-hy-jD4"/>
+                            <constraint firstItem="Xhj-LD-Kwg" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ftW-Nn-ubf"/>
+                            <constraint firstAttribute="trailing" secondItem="MAW-SQ-lTe" secondAttribute="trailing" constant="42" id="plB-df-x9C"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" id="udn-H1-x2S"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <navigationItem key="navigationItem" id="A3j-82-92N"/>
                     <connections>
@@ -60,25 +62,105 @@
             </objects>
             <point key="canvasLocation" x="1659.4202898550725" y="-320.08928571428572"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Trip View-->
         <scene sceneID="e0I-RT-VZW">
             <objects>
-                <viewController id="bum-b6-TDl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTripView" id="bum-b6-TDl" customClass="AddTripView" customModule="tripplanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="poH-kw-06U"/>
+                        <viewControllerLayoutGuide type="bottom" id="w1l-OM-atk"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7t6-q4-BOA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dv-c9-cfV">
+                                <rect key="frame" x="20" y="58" width="374" height="804"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4Z-ug-agq">
+                                        <rect key="frame" x="8" y="16" width="358" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Date of departure" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N77-Cu-WpL">
+                                        <rect key="frame" x="8" y="94" width="358" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="maE-IU-HCt">
+                                        <rect key="frame" x="8" y="198" width="358" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Date of arrival" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-vi-2fj">
+                                        <rect key="frame" x="8" y="276" width="358" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G2S-bL-zA4">
+                                        <rect key="frame" x="8" y="353" width="358" height="259"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBL-F0-hVj">
+                                        <rect key="frame" x="8" y="653" width="253" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Save trip details"/>
+                                        <connections>
+                                            <action selector="saveTripPressed:" destination="bum-b6-TDl" eventType="touchUpInside" id="WbQ-BS-s2t"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyM-d8-yTZ">
+                                        <rect key="frame" x="269" y="653" width="97" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Discard"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="QIW-fT-D11"/>
+                        <constraints>
+                            <constraint firstItem="6dv-c9-cfV" firstAttribute="top" secondItem="poH-kw-06U" secondAttribute="bottom" constant="14" id="2rm-ng-6Zv"/>
+                            <constraint firstItem="w1l-OM-atk" firstAttribute="top" secondItem="6dv-c9-cfV" secondAttribute="bottom" id="VHP-Y8-1iE"/>
+                            <constraint firstAttribute="trailing" secondItem="6dv-c9-cfV" secondAttribute="trailing" constant="20" id="crg-7d-xRa"/>
+                            <constraint firstItem="6dv-c9-cfV" firstAttribute="leading" secondItem="7t6-q4-BOA" secondAttribute="leading" constant="20" id="qur-UT-dUK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="arrivalTextField" destination="a6G-vi-2fj" id="QWX-XH-kXy"/>
+                        <outlet property="departureDateTextField" destination="N77-Cu-WpL" id="nrU-KO-oIj"/>
+                        <outlet property="destinationTextField" destination="maE-IU-HCt" id="OlZ-hK-gvq"/>
+                        <outlet property="notesTextView" destination="G2S-bL-zA4" id="v9s-d5-2yv"/>
+                        <outlet property="saveTripButton" destination="rBL-F0-hVj" id="Mw3-Xi-lCV"/>
+                        <outlet property="sourceTextField" destination="h4Z-ug-agq" id="av0-bF-rcu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifs-oY-5At" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634.7826086956525" y="-313.39285714285711"/>
+            <point key="canvasLocation" x="2633" y="-320"/>
         </scene>
         <!--Past Trips-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="tripplanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JwO-cI-bEm"/>
+                        <viewControllerLayoutGuide type="bottom" id="JTh-MP-8Fx"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +186,6 @@
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Past Trips" image="second" id="cPa-gy-q4n"/>
                 </viewController>
@@ -115,7 +196,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

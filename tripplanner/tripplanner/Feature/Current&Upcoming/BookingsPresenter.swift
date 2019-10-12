@@ -8,14 +8,20 @@
 
 import Foundation
 
-protocol BookingsModuleProtocol {
+protocol BookingsModuleInterface {
     func fetchCurrentTrips()
     func fetchUpcomingTrips()
     func presentAddNewTrips()
 }
 
-class BookingsPresenter: NSObject, BookingsModuleProtocol, BookingsInteractorOutput {
+protocol BookingsInteractorOutput {
+    
+}
+
+class BookingsPresenter: NSObject, BookingsModuleInterface, BookingsInteractorOutput {
     var bookingViewInterface: BookingsViewInterface?
+    var bookingInteractorInput: BookingInteractorInput?
+    var bookingRouter: BookingsRouter?
     
     func fetchCurrentTrips() {
         
@@ -24,6 +30,6 @@ class BookingsPresenter: NSObject, BookingsModuleProtocol, BookingsInteractorOut
         
     }
     func presentAddNewTrips() {
-        
+        bookingRouter!.presentAddNewTrip()
     }
 }

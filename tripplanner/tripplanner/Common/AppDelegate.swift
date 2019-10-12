@@ -12,10 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var rootWireFrame = RootWireFrame()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        configureAppDependencies()
         return true
     }
 
@@ -40,7 +42,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
-
+extension AppDelegate {
+    
+    func configureAppDependencies() {
+        let tabBar = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+ 
+        let bookingsNavView = tabBar.viewControllers![0] as! UINavigationController
+       
+        let bookingsView = bookingsNavView.viewControllers[0] as! BookingsViewController
+        
+        let bookingPresenter = BookingsPresenter()
+        let bookingInteractor = BookingsInteractor()
+        let bookingRouter = BookingsRouter()
+        
+        bookingPresenter.bookingViewInterface = bookingsView
+        bookingsView.presenter = bookingPresenter
+        bookingInteractor.output = bookingPresenter
+        bookingPresenter.bookingInteractorInput = bookingInteractor
+        bookingPresenter.bookingRouter = bookingRouter
+        bookingRouter.rootWireframe = rootWireFrame
+        bookingRouter.bookingViewController = bookingsView
+        
+        
+        self.window?.rootViewController = tabBar
+        self.window?.makeKeyAndVisible()
+        
+    }
 }
 

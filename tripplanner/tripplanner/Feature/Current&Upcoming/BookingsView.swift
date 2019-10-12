@@ -12,10 +12,9 @@ protocol BookingsViewInterface {
     
 }
 
-class BookingsView: UIViewController, BookingsViewInterface {
+class BookingsViewController: UIViewController, BookingsViewInterface {
 
-    
-    var presenter: BookingsModuleProtocol?
+    var presenter: BookingsModuleInterface?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTripButton: UIButton!
@@ -29,13 +28,20 @@ class BookingsView: UIViewController, BookingsViewInterface {
         
     }
 
-    @IBAction func addNewTrip(_ sender: Any) {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddNewTrip" {
+           
+        }
     }
     
-
+    @IBAction func addTripButonPressed(_ sender: Any) {
+        presenter?.presentAddNewTrips()
+    }
+    
 }
 
-extension BookingsView: UITableViewDelegate, UITableViewDataSource {
+extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

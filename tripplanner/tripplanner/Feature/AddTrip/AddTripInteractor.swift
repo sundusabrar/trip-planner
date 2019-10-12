@@ -1,5 +1,5 @@
 //
-//  BookingsInteractor.swift
+//  AddTripInteractor.swift
 //  tripplanner
 //
 //  Created by Sundus Abrar on 12.10.19.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol BookingsInteractorOutput {
+protocol AddTripInteractorInput {
     
 }
-class BookingsInteractor: NSObject {
-    var output: BookingsInteractorOutput?
+class AddTripInteractor: NSObject, AddTripInteractorInput {
+    
 }
