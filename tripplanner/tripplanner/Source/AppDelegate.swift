@@ -47,25 +47,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     func configureAppDependencies() {
+        
+        // Configure all initial/root view controllers 
         let tabBar = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
- 
+
+        // Initialise Booking screen VIPER elements
         let bookingsNavView = tabBar.viewControllers![0] as! UINavigationController
-       
         let bookingsView = bookingsNavView.viewControllers[0] as! BookingsViewController
-        
-        let bookingPresenter = BookingsPresenter()
-        let bookingInteractor = BookingsInteractor()
         let bookingRouter = BookingsRouter()
-        
-        bookingPresenter.bookingViewInterface = bookingsView
-        bookingsView.presenter = bookingPresenter
-        bookingInteractor.output = bookingPresenter
-        bookingPresenter.bookingInteractorInput = bookingInteractor
-        bookingPresenter.bookingRouter = bookingRouter
-        bookingRouter.rootWireframe = rootWireFrame
-        bookingRouter.bookingViewController = bookingsView
+        bookingRouter.buildModule(bookingsView: bookingsView)
         
         
+        
+        // Initialise Past trips screen VIPER elements
+        let pastTripsNavView = tabBar.viewControllers![1] as! UINavigationController
+        let pastTripsView = pastTripsNavView.viewControllers[0] as! PastTripsView
+        let pastTripRouter = PastTripRouter()
+        pastTripRouter.buildModule(pastTripsView: pastTripsView)
+
         self.window?.rootViewController = tabBar
         self.window?.makeKeyAndVisible()
         

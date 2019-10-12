@@ -15,6 +15,19 @@ class BookingsRouter: NSObject {
     
     var bookingViewController: BookingsViewController?
     
+    func buildModule(bookingsView: BookingsViewController) {
+
+        let bookingPresenter = BookingsPresenter()
+        let bookingInteractor = BookingsInteractor()
+        
+        bookingPresenter.bookingViewInterface = bookingsView
+        bookingsView.presenter = bookingPresenter
+        bookingInteractor.output = bookingPresenter
+        bookingPresenter.bookingInteractorInput = bookingInteractor
+        bookingPresenter.bookingRouter = self
+        self.bookingViewController = bookingsView
+    }
+    
     func presentAddNewTrip() {
         let addNewTripRouter = AddTripRouter()
         addNewTripRouter.rootWireFrame = rootWireframe

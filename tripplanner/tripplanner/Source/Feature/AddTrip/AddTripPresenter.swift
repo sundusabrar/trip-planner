@@ -10,13 +10,15 @@ import Foundation
 
 protocol AddTripModuleInterface {
     func discardView()
-    func addTripDetail()
+    func addTripDetail(vimo: TripViMo)
 }
+
 protocol AddTripInteractorOutput {
-    
+    func didAddTripObject()
 }
 
 class AddTripPresenter: NSObject, AddTripModuleInterface, AddTripInteractorOutput {
+
     var addTripView: AddTripViewInterface?
     var addTripInteractorInput: AddTripInteractorInput?
     var addTripRouter: AddTripRouter?
@@ -25,7 +27,11 @@ class AddTripPresenter: NSObject, AddTripModuleInterface, AddTripInteractorOutpu
         addTripRouter!.discardView()
     }
     
-    func addTripDetail() {
-        
+    func addTripDetail(vimo: TripViMo) {
+        addTripInteractorInput?.createNewTrip(vimo: vimo)
+    }
+    
+    func didAddTripObject() {
+        addTripView?.didAddTrip()
     }
 }

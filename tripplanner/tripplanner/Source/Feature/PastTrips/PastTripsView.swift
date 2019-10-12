@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SecondViewController.swift
 //  tripplanner
 //
 //  Created by Sundus Abrar on 12.10.19.
@@ -8,40 +8,28 @@
 
 import UIKit
 
-protocol BookingsViewInterface {
+protocol PastTripViewInterface {
     
 }
 
-class BookingsViewController: UIViewController, BookingsViewInterface {
+class PastTripsView: UIViewController, PastTripViewInterface {
 
-    var presenter: BookingsModuleInterface?
+    var presenter: PastTripModuleInterface?
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addTripButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //Register nib for custom cell class
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
         
     }
-
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddNewTrip" {
-           
-        }
-    }
-    
-    @IBAction func addTripButonPressed(_ sender: Any) {
-        presenter?.presentAddNewTrips()
-    }
-    
 }
 
-extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
+
+extension PastTripsView: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -53,11 +41,11 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as? TripViewCell else {
             fatalError("ERROR: culd not deque cell")
         }
-
+        
         return cell
     }
 }
