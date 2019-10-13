@@ -8,8 +8,9 @@
 
 import Foundation
 import RealmSwift
+import ObjectMapper
 
-final class TripLocation: Object {
+final class TripLocation: Object,  Mappable {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var cityName = ""
     @objc dynamic var placeName = ""
@@ -26,5 +27,19 @@ final class TripLocation: Object {
         self.lon = value.location.longitude
         self.address = value.address
         self.tripTime = value.tripTime
+    }
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        cityName <- map["cityName"]
+        placeName <- map["placeName"]
+        lat <- map["lat"]
+        lon <- map["lon"]
+        address <- map["address"]
+        tripTime <- (map["tripTime"], DateFormatterTransform(dateFormatter: ServiceDateFormatter.shared.formatter))
     }
 }

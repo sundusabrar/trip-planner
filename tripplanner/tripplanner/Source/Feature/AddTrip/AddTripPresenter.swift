@@ -32,6 +32,7 @@ class AddTripPresenter: NSObject, AddTripModuleInterface, AddTripInteractorOutpu
     }
     
     func didAddTripObject() {
+        addTripView?.presentSuccessAlert()
         addTripView?.didAddTrip()
     }
 }

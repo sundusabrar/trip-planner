@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import PKHUD
 
 protocol BookingsViewInterface {
+    func presentLoader()
+    func removeLoader()
     func didLoadTrips(trips: [[TripViMo]])
 }
 
@@ -19,14 +22,20 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTripButton: UIButton!
     
-    var dataSource = [[TripViMo]]()
+    var dataSource = [[TripViMo]]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //Register nib for custom cell class
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         presenter?.loadData()
     }
     
@@ -36,9 +45,16 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
     
     func didLoadTrips(trips: [[TripViMo]]) {
         dataSource = trips
-        self.tableView.reloadData()
     }
     
+    func presentLoader() {
+        HUD.dimsBackground = true
+        HUD.show(HUDContentType.progress)
+    }
+    
+    func removeLoader() {
+        HUD.hide()
+    }
 }
 
 extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {

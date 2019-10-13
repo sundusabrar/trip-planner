@@ -32,6 +32,12 @@
 		1D2989AB23528FAD0040652E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AA23528FAD0040652E /* MapKit.framework */; };
 		1D2989AD23528FBB0040652E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AC23528FBB0040652E /* CoreGraphics.framework */; };
 		1D2989AF235319850040652E /* TripLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989AE235319850040652E /* TripLocation.swift */; };
+		1D2989B323534D5D0040652E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989B223534D5D0040652E /* Service.swift */; };
+		1D2989B523534DAF0040652E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989B423534DAF0040652E /* Constants.swift */; };
+		1D2989B723535AE20040652E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989B623535AE20040652E /* NetworkManager.swift */; };
+		1D2989B923539F6B0040652E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989B823539F6B0040652E /* Extensions.swift */; };
+		1D2989BB2353B4A40040652E /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989BA2353B4A40040652E /* ViewModels.swift */; };
+		1D2989BD2353B8C40040652E /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989BC2353B8C40040652E /* ShadowView.swift */; };
 		7722DA4F3BB25DE0B422EA76 /* Pods_tripplanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +69,12 @@
 		1D2989AA23528FAD0040652E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1D2989AC23528FBB0040652E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1D2989AE235319850040652E /* TripLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLocation.swift; sourceTree = "<group>"; };
+		1D2989B223534D5D0040652E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1D2989B423534DAF0040652E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1D2989B623535AE20040652E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1D2989B823539F6B0040652E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = tripplanner/Source/Network/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		1D2989BA2353B4A40040652E /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		1D2989BC2353B8C40040652E /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		4ADB43CF04E75892ADEF2AB3 /* Pods-tripplanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.debug.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.debug.xcconfig"; sourceTree = "<group>"; };
 		BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripplanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1C7145A5A5F5ABCF53F2C9 /* Pods-tripplanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.release.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,16 +161,19 @@
 			children = (
 				1D2989842351CF210040652E /* Views */,
 				1D2989902351FE5B0040652E /* RootWireframe.swift */,
+				1D2989B423534DAF0040652E /* Constants.swift */,
+				1D2989BA2353B4A40040652E /* ViewModels.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		1D2989822351CED40040652E /* Helpers */ = {
+		1D2989822351CED40040652E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1D2989B823539F6B0040652E /* Extensions.swift */,
 			);
-			name = Helpers;
-			path = ../Helpers;
+			name = Extensions;
+			path = ../Extensions;
 			sourceTree = "<group>";
 		};
 		1D2989832351CEF90040652E /* Resources */ = {
@@ -176,6 +191,7 @@
 			children = (
 				1D29898B2351D6190040652E /* TripViewCell.swift */,
 				1D29898C2351D6190040652E /* TripViewCell.xib */,
+				1D2989BC2353B8C40040652E /* ShadowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,14 +218,24 @@
 		1D2989A523522CA50040652E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1D2989B123534CEF0040652E /* Network */,
 				1D2989692351C0470040652E /* AppDelegate.swift */,
-				1D2989822351CED40040652E /* Helpers */,
+				1D2989822351CED40040652E /* Extensions */,
 				1D2989812351CEC50040652E /* Common */,
 				1D2989A2235227080040652E /* Model */,
 				1D29898F2351E86F0040652E /* Feature */,
 				1D2989A6235264FF0040652E /* DataManager.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		1D2989B123534CEF0040652E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1D2989B223534D5D0040652E /* Service.swift */,
+				1D2989B623535AE20040652E /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		2922ACBEE9981FEC3DF67F93 /* Frameworks */ = {
@@ -369,18 +395,24 @@
 				1D2989932351FE9C0040652E /* BookingsRouter.swift in Sources */,
 				1D298997235202440040652E /* AddTripPresenter.swift in Sources */,
 				1D298999235202570040652E /* AddTripInteractor.swift in Sources */,
+				1D2989B723535AE20040652E /* NetworkManager.swift in Sources */,
 				1D29899F235223330040652E /* PastTripsInteractor.swift in Sources */,
 				1D2989A42352271F0040652E /* Trip.swift in Sources */,
 				1D29899B2352026C0040652E /* AddTripRouter.swift in Sources */,
 				1D29896E2351C0470040652E /* PastTripsView.swift in Sources */,
 				1D29898A2351D1DC0040652E /* BookingsInteractor.swift in Sources */,
+				1D2989B923539F6B0040652E /* Extensions.swift in Sources */,
 				1D2989912351FE5B0040652E /* RootWireframe.swift in Sources */,
 				1D2989A7235264FF0040652E /* DataManager.swift in Sources */,
+				1D2989BD2353B8C40040652E /* ShadowView.swift in Sources */,
+				1D2989B323534D5D0040652E /* Service.swift in Sources */,
 				1D29896A2351C0470040652E /* AppDelegate.swift in Sources */,
 				1D298995235201ED0040652E /* AddTripView.swift in Sources */,
 				1D2989A1235223480040652E /* PastTripsRouter.swift in Sources */,
 				1D29899D235223200040652E /* PastTripsPresenter.swift in Sources */,
+				1D2989B523534DAF0040652E /* Constants.swift in Sources */,
 				1D29896C2351C0470040652E /* BookingsView.swift in Sources */,
+				1D2989BB2353B4A40040652E /* ViewModels.swift in Sources */,
 				1D2989882351D18E0040652E /* BookingsPresenter.swift in Sources */,
 				1D29898D2351D6190040652E /* TripViewCell.swift in Sources */,
 				1D2989AF235319850040652E /* TripLocation.swift in Sources */,

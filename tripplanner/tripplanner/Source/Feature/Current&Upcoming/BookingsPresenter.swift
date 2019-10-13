@@ -29,14 +29,20 @@ class BookingsPresenter: NSObject, BookingsModuleInterface, BookingsInteractorOu
     }
     
     func loadData() {
-        bookingInteractorInput!.loadData()
+        bookingViewInterface?.presentLoader()
+        perform(#selector(fetchData), with: nil, afterDelay: 0.1)
     }
     
+    @objc
+    func fetchData() {
+         bookingInteractorInput!.loadData()
+    }
     func didLoadData(trips: [String: [TripViMo]]) {
         print(trips)
     }
     
     func didLoadTripData(trips: [[TripViMo]]) {
+        bookingViewInterface?.removeLoader()
         bookingViewInterface?.didLoadTrips(trips: trips)
     }
 }

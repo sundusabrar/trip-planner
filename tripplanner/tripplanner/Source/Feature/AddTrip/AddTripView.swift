@@ -10,61 +10,40 @@ import UIKit
 import MapKit
 import CoreLocation
 import GooglePlaces
+import PKHUD
+import MaterialComponents.MaterialButtons
 
 protocol AddTripViewInterface {
     func presentSuccessAlert()
     func didAddTrip()
 }
 
-struct TripViMo {
-    var tripName = ""
-    var source = TripLocationViMo()
-    var dest = TripLocationViMo()
-    var creationDate = Date()
-}
-
-struct TripLocationViMo {
-    var cityName = ""
-    var placeName = ""
-    var address = ""
-    var lat = 0.0
-    var lon = 0.0
-    var location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    var tripTime = Date()
-    
-    static func createVimo(tripLoc: TripLocation) -> TripLocationViMo {
-        return self.init(cityName: tripLoc.cityName,
-                         placeName: "",
-                         address: tripLoc.address,
-                         lat: tripLoc.lat,
-                         lon: tripLoc.lon,
-                         location: CLLocationCoordinate2D(latitude:tripLoc.lat, longitude: tripLoc.lon),
-                        tripTime: tripLoc.tripTime)
-    }
-}
-
 class AddTripView: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var sourceTextField: UITextField!
     @IBOutlet weak var destinationTextField: UITextField!
-    
     @IBOutlet weak var departureDateTextField: UITextField!
     @IBOutlet weak var arrivalTextField: UITextField!
+    @IBOutlet weak var saveTripButton: RaisedButton!
+    @IBOutlet weak var tripNameTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var sourceLocationButton: UIButton!
+    @IBOutlet weak var destLocationButton: UIButton!
     
-    @IBOutlet weak var notesTextView: UITextView!
-    @IBOutlet weak var saveTripButton: UIButton!
+    @IBOutlet weak var backgroundView: ShadowedView!
+    
     
     var activeField: UITextField?
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    var sourceLocation: CLLocationCoordinate2D?
-    var destinationLocation: CLLocationCoordinate2D?
-   
-    var tripViMo = TripViMo()
-    
     var eventHandler: AddTripModuleInterface?
     
+    var tripViMo = TripViMo() {
+        didSet {
+            if sourceTextField.text != "" && destinationTextField.text != "" {
+                drawPolyLine()
+            }
+        }
+    }
+
     lazy var datePicker: UIDatePicker = {
         var picker = UIDatePicker()
         picker.datePickerMode = UIDatePicker.Mode.dateAndTime
@@ -91,67 +70,14 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let dLocation = CLLocation(latitude: 49.489989, longitude: 8.473512)
+        let dRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dLocation.coordinate.latitude,
+                                                                        longitude: dLocation.coordinate.longitude),
+                                         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.delegate = self
-        sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
-        destinationLocation = CLLocationCoordinate2D(latitude: 40.748441, longitude: -73.985564)
-        drawPolyLine()
-    }
-    
-    func drawPolyLine() {
-        
-        // 3. Placemarks
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation!, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation!, addressDictionary: nil)
-        
-        // 4. Routing Information
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
-        // 5. Annotations to be dropped on map
-        let sourceAnnotation = MKPointAnnotation()
-        sourceAnnotation.title = "Times Square"
-        
-        if let location = sourcePlacemark.location {
-            sourceAnnotation.coordinate = location.coordinate
-        }
-        
-        let destinationAnnotation = MKPointAnnotation()
-        destinationAnnotation.title = "Empire State Building"
-        
-        if let location = destinationPlacemark.location {
-            destinationAnnotation.coordinate = location.coordinate
-        }
-        
-        // 6.
-        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-        
-        // 7.
-        let directionRequest = MKDirections.Request()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .automobile
-        
-        // Calculate the direction
-        let directions = MKDirections(request: directionRequest)
-        
-        // 8.
-        directions.calculate {
-            (response, error) -> Void in
-            
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                
-                return
-            }
-            
-            let route = response.routes[0]
-            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-        }
+        mapView.setRegion(dRegion, animated: true)
+        backgroundView.setDefaultElevation()
+        saveTripButton.setDefaultElevation()
     }
     
     @objc func handleDatePicker() {
@@ -167,6 +93,10 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func getLocation(_ sender: Any) {
+        
+    }
+    
     @objc func dissmissPicker() {
         activeField?.resignFirstResponder()
     }
@@ -179,6 +109,7 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         eventHandler!.discardView()
     }
     
+    // MARK: UIView Delegate
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sourceTextField.resignFirstResponder()
         destinationTextField.resignFirstResponder()
@@ -186,6 +117,7 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         arrivalTextField.resignFirstResponder()
     }
     
+    //MARK: TextField Delagtes
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeField = textField
         
@@ -201,6 +133,9 @@ class AddTripView: UIViewController, UITextFieldDelegate {
             arrivalTextField.inputAccessoryView = toolBar
             datePicker.minimumDate = tripViMo.source.tripTime
         }
+        else if textField == tripNameTextField {
+            //do nothing
+        }
         else {
             launchAutoFillVC()
         }
@@ -213,6 +148,9 @@ class AddTripView: UIViewController, UITextFieldDelegate {
             }
             else if textField == destinationTextField {
                 tripViMo.dest.address = textField.text!
+            }
+            else if textField == tripNameTextField {
+                tripViMo.tripName = textField.text!
             }
         }
     }
@@ -240,10 +178,12 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         // Display the autocomplete view controller.
         present(autocompleteController, animated: true, completion: nil)
     }
-
 }
 
+//MARK: MKMapView Delegate
+
 extension AddTripView: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.red
@@ -251,15 +191,71 @@ extension AddTripView: MKMapViewDelegate {
         
         return renderer
     }
+    
+    func drawPolyLine() {
+        
+        // 1. Placemarks
+        let sourcePlacemark = MKPlacemark(coordinate: tripViMo.source.location, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: tripViMo.dest.location, addressDictionary: nil)
+        
+        // 2. Routing Information
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // 3. Annotations to be dropped on map
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = tripViMo.source.placeName
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+        }
+        
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.title = tripViMo.dest.placeName
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        // 4.
+        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+        
+        // 5.
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        // 6.
+        directions.calculate {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+    }
 }
 
-//extension AddTripView: CLLocationManager {
-//    
-//}
+//MARK: ViewInterface Implementation
 
 extension AddTripView: AddTripViewInterface {
     func presentSuccessAlert() {
         //show PKHud
+        HUD.show(HUDContentType.success)
     }
     
     func didAddTrip() {
@@ -267,17 +263,12 @@ extension AddTripView: AddTripViewInterface {
     }
 }
 
+//MARK: GMSAutoComplete Delegate
 extension AddTripView: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
-        print("Place name: \(place.name)")
-        print("Coordinate: \(place.coordinate)")
-        print("Place attributions: \(place.attributions)")
-        print("Formatted Address: \(place.formattedAddress)")
-        print("address component: \(place.addressComponents)")
-        
+
         var keys = [String]()
         place.addressComponents?.forEach{keys.append($0.type)}
         
@@ -296,6 +287,7 @@ extension AddTripView: GMSAutocompleteViewControllerDelegate {
             tripViMo.source.address = address
             tripViMo.source.location = placeCoordinates
             tripViMo.source.placeName = placeName
+            
         }
         else {
             tripViMo.dest.cityName = cityName!

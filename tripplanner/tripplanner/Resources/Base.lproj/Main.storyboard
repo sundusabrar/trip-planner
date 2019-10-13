@@ -78,147 +78,169 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRz-uS-eUD">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="20" y="44" width="374" height="808"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dv-c9-cfV">
-                                        <rect key="frame" x="0.0" y="7" width="374" height="818"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dv-c9-cfV" customClass="ShadowedView" customModule="tripplanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="808"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4Z-ug-agq" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="8" y="80" width="358" height="43"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nXW-B9-M4X" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                <rect key="frame" x="20" y="40" width="334" height="44"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Name your trip"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4Z-ug-agq" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
+                                                <rect key="frame" x="20" y="124" width="334" height="44"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="bum-b6-TDl" id="fdr-2l-Ne9"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Date of departure" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N77-Cu-WpL" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="8" y="140" width="358" height="43"/>
+                                                <rect key="frame" x="20" y="185" width="334" height="44"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="bum-b6-TDl" id="duN-tu-16x"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="maE-IU-HCt" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="8" y="213" width="358" height="43"/>
+                                                <rect key="frame" x="20" y="246" width="334" height="43.5"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="bum-b6-TDl" id="zvu-kq-oLO"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Date of arrival" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-vi-2fj" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
-                                                <rect key="frame" x="8" y="273" width="358" height="43"/>
+                                                <rect key="frame" x="20" y="306.5" width="334" height="42.5"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="bum-b6-TDl" id="ISB-xJ-PM1"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyM-d8-yTZ">
-                                                <rect key="frame" x="33" y="686" width="310" height="45"/>
-                                                <color key="backgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="20" y="683" width="334" height="55"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="vKg-BA-RTp"/>
+                                                    <constraint firstAttribute="height" constant="55" id="vKg-BA-RTp"/>
                                                 </constraints>
-                                                <state key="normal" title="Discard"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Discard">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="discardTripDetails:" destination="bum-b6-TDl" eventType="touchUpInside" id="R3Q-ke-41X"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5Z-mm-YOn">
-                                                <rect key="frame" x="332" y="84.5" width="34" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="34" id="eXz-Uj-GS4"/>
-                                                    <constraint firstAttribute="height" constant="34" id="zjv-dh-x5X"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="B"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scn-2H-Pw9">
-                                                <rect key="frame" x="332" y="217.5" width="34" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="pIR-An-YfZ"/>
-                                                    <constraint firstAttribute="width" constant="34" id="qF3-zo-P63"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="B"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBL-F0-hVj">
-                                                <rect key="frame" x="33" y="631" width="310" height="45"/>
-                                                <color key="backgroundColor" red="0.33333334329999997" green="0.29515280900000002" blue="0.067213363930000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Save trip details"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBL-F0-hVj" customClass="RaisedButton" customModule="tripplanner" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="618" width="334" height="55"/>
+                                                <color key="backgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="0.90705265410958902" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Save trip details">
+                                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="saveTripPressed:" destination="bum-b6-TDl" eventType="touchUpInside" id="MOx-k1-jXj"/>
                                                 </connections>
                                             </button>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="v8m-SR-cd0">
-                                                <rect key="frame" x="8" y="324" width="358" height="299"/>
+                                                <rect key="frame" x="20" y="357" width="334" height="246"/>
                                             </mapView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="a6G-vi-2fj" firstAttribute="trailing" secondItem="nXW-B9-M4X" secondAttribute="trailing" id="3hi-lX-gMe"/>
+                                            <constraint firstItem="gyM-d8-yTZ" firstAttribute="leading" secondItem="rBL-F0-hVj" secondAttribute="leading" id="3pz-cd-vep"/>
                                             <constraint firstItem="v8m-SR-cd0" firstAttribute="width" secondItem="a6G-vi-2fj" secondAttribute="width" id="8QX-el-skh"/>
                                             <constraint firstItem="rBL-F0-hVj" firstAttribute="width" secondItem="gyM-d8-yTZ" secondAttribute="width" id="9sl-gW-Fhd"/>
-                                            <constraint firstItem="h4Z-ug-agq" firstAttribute="leading" secondItem="6dv-c9-cfV" secondAttribute="leading" constant="8" id="BDV-7w-VHh"/>
-                                            <constraint firstItem="scn-2H-Pw9" firstAttribute="centerY" secondItem="maE-IU-HCt" secondAttribute="centerY" id="CUV-Y2-W7m"/>
-                                            <constraint firstItem="N77-Cu-WpL" firstAttribute="top" secondItem="h4Z-ug-agq" secondAttribute="bottom" constant="17" id="Hij-Dz-8jk"/>
-                                            <constraint firstAttribute="trailing" secondItem="h4Z-ug-agq" secondAttribute="trailing" constant="8" id="IrB-1r-Iol"/>
-                                            <constraint firstItem="h4Z-ug-agq" firstAttribute="top" secondItem="6dv-c9-cfV" secondAttribute="top" constant="80" id="JV1-En-JAF"/>
-                                            <constraint firstItem="N77-Cu-WpL" firstAttribute="leading" secondItem="6dv-c9-cfV" secondAttribute="leading" constant="8" id="K54-vb-0cA"/>
-                                            <constraint firstAttribute="trailing" secondItem="gyM-d8-yTZ" secondAttribute="trailing" constant="31" id="MAM-eK-kYl"/>
-                                            <constraint firstAttribute="trailing" secondItem="a6G-vi-2fj" secondAttribute="trailing" constant="8" id="Oiq-76-7TJ"/>
+                                            <constraint firstItem="h4Z-ug-agq" firstAttribute="top" secondItem="nXW-B9-M4X" secondAttribute="bottom" constant="40" id="9xx-qE-u98"/>
+                                            <constraint firstItem="rBL-F0-hVj" firstAttribute="trailing" secondItem="a6G-vi-2fj" secondAttribute="trailing" id="BJZ-fc-IKv"/>
+                                            <constraint firstItem="maE-IU-HCt" firstAttribute="leading" secondItem="nXW-B9-M4X" secondAttribute="leading" id="EH1-rG-05b"/>
+                                            <constraint firstItem="nXW-B9-M4X" firstAttribute="top" secondItem="6dv-c9-cfV" secondAttribute="top" constant="40" id="F05-2H-lHU"/>
+                                            <constraint firstItem="a6G-vi-2fj" firstAttribute="leading" secondItem="nXW-B9-M4X" secondAttribute="leading" id="GFC-Js-NHs"/>
                                             <constraint firstItem="rBL-F0-hVj" firstAttribute="height" secondItem="gyM-d8-yTZ" secondAttribute="height" id="Otl-pj-aAh"/>
                                             <constraint firstItem="a6G-vi-2fj" firstAttribute="top" secondItem="maE-IU-HCt" secondAttribute="bottom" constant="17" id="QLH-zF-Zr2"/>
-                                            <constraint firstItem="rBL-F0-hVj" firstAttribute="top" secondItem="v8m-SR-cd0" secondAttribute="bottom" constant="8" id="R0T-nD-jSp"/>
-                                            <constraint firstItem="L5Z-mm-YOn" firstAttribute="trailing" secondItem="h4Z-ug-agq" secondAttribute="trailing" id="SUe-30-FQn"/>
-                                            <constraint firstAttribute="trailing" secondItem="N77-Cu-WpL" secondAttribute="trailing" constant="8" id="XF7-0W-Mya"/>
+                                            <constraint firstItem="rBL-F0-hVj" firstAttribute="top" secondItem="v8m-SR-cd0" secondAttribute="bottom" constant="15" id="R0T-nD-jSp"/>
+                                            <constraint firstItem="N77-Cu-WpL" firstAttribute="leading" secondItem="nXW-B9-M4X" secondAttribute="leading" id="UCN-K5-BUp"/>
+                                            <constraint firstItem="nXW-B9-M4X" firstAttribute="leading" secondItem="6dv-c9-cfV" secondAttribute="leading" constant="20" id="XaH-Gl-O9w"/>
+                                            <constraint firstItem="h4Z-ug-agq" firstAttribute="trailing" secondItem="nXW-B9-M4X" secondAttribute="trailing" id="Ya3-BI-IWw"/>
                                             <constraint firstItem="gyM-d8-yTZ" firstAttribute="top" secondItem="rBL-F0-hVj" secondAttribute="bottom" constant="10" id="ZrZ-mv-5D8"/>
-                                            <constraint firstItem="maE-IU-HCt" firstAttribute="leading" secondItem="6dv-c9-cfV" secondAttribute="leading" constant="8" id="al8-Oc-a2T"/>
-                                            <constraint firstAttribute="trailing" secondItem="rBL-F0-hVj" secondAttribute="trailing" constant="31" id="dyb-o1-60Q"/>
-                                            <constraint firstItem="scn-2H-Pw9" firstAttribute="trailing" secondItem="maE-IU-HCt" secondAttribute="trailing" id="fLe-Oa-gRl"/>
-                                            <constraint firstItem="rBL-F0-hVj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gyM-d8-yTZ" secondAttribute="leading" id="gTR-7Z-vGP"/>
-                                            <constraint firstAttribute="trailing" secondItem="maE-IU-HCt" secondAttribute="trailing" constant="8" id="jVa-5W-wDn"/>
+                                            <constraint firstItem="rBL-F0-hVj" firstAttribute="leading" secondItem="a6G-vi-2fj" secondAttribute="leading" id="e89-PJ-FNQ"/>
+                                            <constraint firstItem="N77-Cu-WpL" firstAttribute="trailing" secondItem="nXW-B9-M4X" secondAttribute="trailing" id="mQZ-ZS-Hq8"/>
+                                            <constraint firstItem="nXW-B9-M4X" firstAttribute="height" secondItem="h4Z-ug-agq" secondAttribute="height" id="sKS-OJ-2Wy"/>
                                             <constraint firstItem="N77-Cu-WpL" firstAttribute="top" secondItem="h4Z-ug-agq" secondAttribute="bottom" constant="17" id="sih-5k-BLZ"/>
-                                            <constraint firstItem="maE-IU-HCt" firstAttribute="top" secondItem="N77-Cu-WpL" secondAttribute="bottom" constant="30" id="uQO-fu-HaP"/>
+                                            <constraint firstItem="maE-IU-HCt" firstAttribute="top" secondItem="N77-Cu-WpL" secondAttribute="bottom" constant="17" id="uQO-fu-HaP"/>
+                                            <constraint firstItem="maE-IU-HCt" firstAttribute="trailing" secondItem="nXW-B9-M4X" secondAttribute="trailing" id="v2o-Q1-ZaU"/>
+                                            <constraint firstItem="h4Z-ug-agq" firstAttribute="leading" secondItem="nXW-B9-M4X" secondAttribute="leading" id="yGg-x0-4px"/>
                                             <constraint firstItem="v8m-SR-cd0" firstAttribute="top" secondItem="a6G-vi-2fj" secondAttribute="bottom" constant="8" id="yK0-qE-0RM"/>
-                                            <constraint firstItem="L5Z-mm-YOn" firstAttribute="centerY" secondItem="h4Z-ug-agq" secondAttribute="centerY" id="ymM-zM-4i0"/>
-                                            <constraint firstItem="a6G-vi-2fj" firstAttribute="leading" secondItem="6dv-c9-cfV" secondAttribute="leading" constant="8" id="zw4-Wq-rh9"/>
+                                            <constraint firstAttribute="trailing" secondItem="nXW-B9-M4X" secondAttribute="trailing" constant="20" id="zMn-bW-ttr"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6dv-c9-cfV" secondAttribute="trailing" id="5h0-A6-Z6N"/>
                                     <constraint firstItem="6dv-c9-cfV" firstAttribute="leading" secondItem="PRz-uS-eUD" secondAttribute="leading" id="ObT-Bz-f7F"/>
                                     <constraint firstItem="6dv-c9-cfV" firstAttribute="width" secondItem="PRz-uS-eUD" secondAttribute="width" id="Reh-Kv-7f0"/>
-                                    <constraint firstItem="6dv-c9-cfV" firstAttribute="top" secondItem="PRz-uS-eUD" secondAttribute="top" constant="7" id="U5s-WE-gIf"/>
+                                    <constraint firstItem="6dv-c9-cfV" firstAttribute="top" secondItem="PRz-uS-eUD" secondAttribute="top" id="U5s-WE-gIf"/>
                                     <constraint firstItem="6dv-c9-cfV" firstAttribute="height" secondItem="PRz-uS-eUD" secondAttribute="height" priority="250" id="gkg-Va-tQR"/>
-                                    <constraint firstAttribute="bottom" secondItem="6dv-c9-cfV" secondAttribute="bottom" constant="7" id="mq5-wd-I3A"/>
+                                    <constraint firstAttribute="bottom" secondItem="6dv-c9-cfV" secondAttribute="bottom" id="mq5-wd-I3A"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="PRz-uS-eUD" secondAttribute="trailing" id="63Q-kj-ASY"/>
                             <constraint firstItem="v8m-SR-cd0" firstAttribute="centerX" secondItem="7t6-q4-BOA" secondAttribute="centerX" id="F0B-xh-KRD"/>
                             <constraint firstItem="w1l-OM-atk" firstAttribute="top" secondItem="gyM-d8-yTZ" secondAttribute="bottom" constant="80" id="K7r-Tm-akR"/>
-                            <constraint firstItem="w1l-OM-atk" firstAttribute="top" secondItem="PRz-uS-eUD" secondAttribute="bottom" id="aHp-yX-mdS"/>
-                            <constraint firstItem="gyM-d8-yTZ" firstAttribute="leading" secondItem="7t6-q4-BOA" secondAttribute="leading" constant="53" id="hCc-Rb-baI"/>
+                            <constraint firstItem="w1l-OM-atk" firstAttribute="top" secondItem="PRz-uS-eUD" secondAttribute="bottom" constant="10" id="aHp-yX-mdS"/>
                             <constraint firstItem="PRz-uS-eUD" firstAttribute="leading" secondItem="7t6-q4-BOA" secondAttribute="leadingMargin" id="mIV-mP-NHd"/>
                             <constraint firstItem="PRz-uS-eUD" firstAttribute="top" secondItem="poH-kw-06U" secondAttribute="bottom" id="mSI-vV-fF8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrivalTextField" destination="a6G-vi-2fj" id="QWX-XH-kXy"/>
+                        <outlet property="backgroundView" destination="6dv-c9-cfV" id="jk7-Jm-E5U"/>
                         <outlet property="departureDateTextField" destination="N77-Cu-WpL" id="nrU-KO-oIj"/>
                         <outlet property="destinationTextField" destination="maE-IU-HCt" id="OlZ-hK-gvq"/>
                         <outlet property="mapView" destination="v8m-SR-cd0" id="vbF-S7-37X"/>
                         <outlet property="saveTripButton" destination="rBL-F0-hVj" id="Mw3-Xi-lCV"/>
                         <outlet property="sourceTextField" destination="h4Z-ug-agq" id="av0-bF-rcu"/>
+                        <outlet property="tripNameTextField" destination="nXW-B9-M4X" id="n0I-D7-7e9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifs-oY-5At" userLabel="First Responder" sceneMemberID="firstResponder"/>

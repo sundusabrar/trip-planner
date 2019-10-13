@@ -9,13 +9,13 @@
 import Foundation
 import RealmSwift
 import SwiftDate
+import ObjectMapper
 
-final class Trip: Object {
+final class Trip: Object, Mappable {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var isDirty = true
     @objc dynamic var creationDate = Date()
     @objc dynamic var tripName = ""
-    
     @objc dynamic var tripSource : TripLocation?
     @objc dynamic var tripDest : TripLocation?
     
@@ -36,5 +36,31 @@ final class Trip: Object {
         self.creationDate = value.creationDate
     }
     
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        tripName <- map["tripName"]
+        tripSource <- map["source"]
+        tripDest <- map["destination"]
+        creationDate <- (map["tripCreationDate"], DateFormatterTransform(dateFormatter: ServiceDateFormatter.shared.formatter))
+        isDirty = false
+    }
 }
+
+class TripsResponse: Mappable {
+    dynamic var allTrips = [Trip]()
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        allTrips <- map["data"]
+    }
+}
+
+
 

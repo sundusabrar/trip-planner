@@ -18,6 +18,13 @@ class BookingsInteractor: NSObject, BookingInteractorInput {
     
     func loadData() {
         
+        // Download latest trips
+        NetworkManager.sharedInstance.fetchAllTrips(completion: {
+            self.loadOfflineTrips()
+        })
+    }
+
+    func loadOfflineTrips() {
         let currentTrips = DataManager.sharedInstance.fetchCurrentTrips()
         let upcomingTrips = DataManager.sharedInstance.fetchUpcomingTrips()
         var currTrips = [TripViMo]()
@@ -31,7 +38,7 @@ class BookingsInteractor: NSObject, BookingInteractorInput {
             let tripvimo = TripViMo(tripName: t.tripName, source: source, dest: dest, creationDate: t.creationDate)
             currTrips.append(tripvimo)
         }
-  
+        
         for t in upcomingTrips {
             let source = TripLocationViMo.createVimo(tripLoc: t.tripSource!)
             let dest = TripLocationViMo.createVimo(tripLoc: t.tripDest!)
@@ -43,5 +50,4 @@ class BookingsInteractor: NSObject, BookingInteractorInput {
         let results = [currTrips, upcoming]
         output?.didLoadTripData(trips: results)
     }
-
 }

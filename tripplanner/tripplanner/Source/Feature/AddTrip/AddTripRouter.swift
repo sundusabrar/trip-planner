@@ -23,6 +23,7 @@ class AddTripRouter: NSObject {
         addTripPresenter.addTripView = addTripView
         addTripPresenter.addTripRouter = self
         addTripPresenter.addTripInteractorInput = addTripInteractor
+        addTripInteractor.output = addTripPresenter
         
         self.presentedView = addTripView
         onView.present(addTripView, animated: true, completion: nil)

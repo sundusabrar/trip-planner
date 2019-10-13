@@ -42,6 +42,11 @@ class DataManager {
         return Array(results)
     }
     
+    func fetchTripToUpload() -> [Trip] {
+        let results = database.objects(Trip.self).filter("self.isDirty = true")
+        return Array(results)
+    }
+    
     func addTrip(objects: [Trip])   {
         
         try! database.write {
