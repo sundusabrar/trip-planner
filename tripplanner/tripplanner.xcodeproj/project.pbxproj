@@ -31,6 +31,7 @@
 		1D2989A923528FA70040652E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989A823528FA60040652E /* CoreLocation.framework */; };
 		1D2989AB23528FAD0040652E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AA23528FAD0040652E /* MapKit.framework */; };
 		1D2989AD23528FBB0040652E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2989AC23528FBB0040652E /* CoreGraphics.framework */; };
+		1D2989AF235319850040652E /* TripLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2989AE235319850040652E /* TripLocation.swift */; };
 		7722DA4F3BB25DE0B422EA76 /* Pods_tripplanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		1D2989A823528FA60040652E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1D2989AA23528FAD0040652E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1D2989AC23528FBB0040652E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1D2989AE235319850040652E /* TripLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLocation.swift; sourceTree = "<group>"; };
 		4ADB43CF04E75892ADEF2AB3 /* Pods-tripplanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.debug.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.debug.xcconfig"; sourceTree = "<group>"; };
 		BA0D0EC827E367E299B94618 /* Pods_tripplanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripplanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1C7145A5A5F5ABCF53F2C9 /* Pods-tripplanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripplanner.release.xcconfig"; path = "Target Support Files/Pods-tripplanner/Pods-tripplanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				1D2989A32352271F0040652E /* Trip.swift */,
+				1D2989AE235319850040652E /* TripLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				1D2989632351C0470040652E /* Frameworks */,
 				1D2989642351C0470040652E /* Resources */,
 				8A3FBC901AD6F83583C9EAA6 /* [CP] Embed Pods Frameworks */,
+				BAC39559421CAD3B88FED406 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -316,6 +320,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripplanner/Pods-tripplanner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BAC39559421CAD3B88FED406 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripplanner/Pods-tripplanner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripplanner/Pods-tripplanner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripplanner/Pods-tripplanner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C603FD615CCC80F88E14028F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +383,7 @@
 				1D29896C2351C0470040652E /* BookingsView.swift in Sources */,
 				1D2989882351D18E0040652E /* BookingsPresenter.swift in Sources */,
 				1D29898D2351D6190040652E /* TripViewCell.swift in Sources */,
+				1D2989AF235319850040652E /* TripLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

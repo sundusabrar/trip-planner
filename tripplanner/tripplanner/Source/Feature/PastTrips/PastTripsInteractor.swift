@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol PastTripInteractorInput {
     func loadData()
@@ -21,10 +22,10 @@ class PastTripInteractor: NSObject, PastTripInteractorInput {
         var currTrips = [TripViMo]()
         
         for t in currentTrips {
-            let tripvimo = TripViMo(source: t.source,
-                                    destination: t.destination,
-                                    departureTime: t.departureTime,
-                                    arrivalTime: t.arrivalTime)
+            let source = TripLocationViMo.createVimo(tripLoc: t.tripSource!)
+            let dest = TripLocationViMo.createVimo(tripLoc: t.tripDest!)
+            
+            let tripvimo = TripViMo(tripName: t.tripName, source: source, dest: dest, creationDate: t.creationDate)
             currTrips.append(tripvimo)
         }
         

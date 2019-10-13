@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftDate
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         configureAppDependencies()
-        
+        GMSPlacesClient.provideAPIKey("")
+       
         //generateDummyData()
         
         return true
@@ -31,7 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for index in (1..<8).reversed() {
             let d1 = Date() - (index).days
             let d2 = Date() - (index-1).days
-            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            
+            let source = TripLocationViMo(cityName: "SCityName", placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d1)
+            let dest = TripLocationViMo(cityName: "DCityName", placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d2)
+            
+            let pastTrip1 = TripViMo(tripName: "TripName", source: source, dest: dest, creationDate: Date())
+            
             let pt1 = Trip(value: pastTrip1)
             
             tripArr.append(pt1)
@@ -41,7 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for index in (1..<3) {
             let d1 = Date()
             let d2 = Date() + (index).days
-            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            let source = TripLocationViMo(cityName: "SCityName", placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d1)
+            let dest = TripLocationViMo(cityName: "DCityName",placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d2)
+            
+            let pastTrip1 = TripViMo(tripName: "TripName", source: source, dest: dest, creationDate: Date())
             let pt1 = Trip(value: pastTrip1)
             
             tripArr.append(pt1)
@@ -51,7 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for index in (1..<6) {
             let d1 = Date() + (index).days
             let d2 = Date() + (index+1).days
-            let pastTrip1 = TripViMo(source: "ABC", destination: "DEF", departureTime: d1, arrivalTime: d2)
+            let source = TripLocationViMo(cityName: "SCityName",placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d1)
+            let dest = TripLocationViMo(cityName: "DCityName",placeName: "Place", address: "", lat: 0.0, lon: 0.0, location: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), tripTime: d2)
+            
+            let pastTrip1 = TripViMo(tripName: "TripName", source: source, dest: dest, creationDate: Date())
             let pt1 = Trip(value: pastTrip1)
             
             tripArr.append(pt1)

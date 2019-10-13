@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import GooglePlaces
 
 protocol AddTripViewInterface {
     func presentSuccessAlert()
@@ -16,10 +17,30 @@ protocol AddTripViewInterface {
 }
 
 struct TripViMo {
-    var source = ""
-    var destination = ""
-    var departureTime = Date()
-    var arrivalTime = Date()
+    var tripName = ""
+    var source = TripLocationViMo()
+    var dest = TripLocationViMo()
+    var creationDate = Date()
+}
+
+struct TripLocationViMo {
+    var cityName = ""
+    var placeName = ""
+    var address = ""
+    var lat = 0.0
+    var lon = 0.0
+    var location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var tripTime = Date()
+    
+    static func createVimo(tripLoc: TripLocation) -> TripLocationViMo {
+        return self.init(cityName: tripLoc.cityName,
+                         placeName: "",
+                         address: tripLoc.address,
+                         lat: tripLoc.lat,
+                         lon: tripLoc.lon,
+                         location: CLLocationCoordinate2D(latitude:tripLoc.lat, longitude: tripLoc.lon),
+                        tripTime: tripLoc.tripTime)
+    }
 }
 
 class AddTripView: UIViewController, UITextFieldDelegate {
@@ -36,6 +57,9 @@ class AddTripView: UIViewController, UITextFieldDelegate {
     var activeField: UITextField?
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    var sourceLocation: CLLocationCoordinate2D?
+    var destinationLocation: CLLocationCoordinate2D?
    
     var tripViMo = TripViMo()
     
@@ -68,14 +92,16 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         mapView.delegate = self
-        
-        // 2. Locations to be shown on mapview
-        let sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
-        let destinationLocation = CLLocationCoordinate2D(latitude: 40.748441, longitude: -73.985564)
+        sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
+        destinationLocation = CLLocationCoordinate2D(latitude: 40.748441, longitude: -73.985564)
+        drawPolyLine()
+    }
+    
+    func drawPolyLine() {
         
         // 3. Placemarks
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation!, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation!, addressDictionary: nil)
         
         // 4. Routing Information
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
@@ -88,7 +114,6 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         if let location = sourcePlacemark.location {
             sourceAnnotation.coordinate = location.coordinate
         }
-        
         
         let destinationAnnotation = MKPointAnnotation()
         destinationAnnotation.title = "Empire State Building"
@@ -134,10 +159,10 @@ class AddTripView: UIViewController, UITextFieldDelegate {
             a.text = dateFormatter.string(from: datePicker.date)
             
             if a == departureDateTextField {
-                tripViMo.departureTime = datePicker.date
+                tripViMo.source.tripTime = datePicker.date
             }
             else {
-                tripViMo.arrivalTime = datePicker.date
+                tripViMo.dest.tripTime = datePicker.date
             }
         }
     }
@@ -165,29 +190,57 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         activeField = textField
         
         if textField == departureDateTextField {
-            datePicker.date = tripViMo.departureTime
+            datePicker.date = tripViMo.source.tripTime
             departureDateTextField.inputView = datePicker
             departureDateTextField.inputAccessoryView = toolBar
             datePicker.minimumDate = Date()
         }
         else if textField == arrivalTextField {
-            datePicker.date = tripViMo.arrivalTime
+            datePicker.date = tripViMo.dest.tripTime
             arrivalTextField.inputView = datePicker
             arrivalTextField.inputAccessoryView = toolBar
-            datePicker.minimumDate = tripViMo.departureTime
+            datePicker.minimumDate = tripViMo.source.tripTime
+        }
+        else {
+            launchAutoFillVC()
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         if textField.text != ""{
             if textField == sourceTextField {
-                tripViMo.source = textField.text!
+                tripViMo.source.address = textField.text!
             }
             else if textField == destinationTextField {
-                tripViMo.destination = textField.text!
+                tripViMo.dest.address = textField.text!
             }
         }
     }
+    
+    func launchAutoFillVC() {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        
+        // Specify the place data types to return.
+        let fields = GMSPlaceField(rawValue:
+            UInt(GMSPlaceField.name.rawValue) |
+            UInt(GMSPlaceField.addressComponents.rawValue) |
+            UInt(GMSPlaceField.placeID.rawValue) |
+            UInt(GMSPlaceField.formattedAddress.rawValue) |
+            UInt(GMSPlaceField.photos.rawValue) |
+            UInt(GMSPlaceField.coordinate.rawValue))!
+        
+        autocompleteController.placeFields = fields
+        
+        // Specify a filter.
+        let filter = GMSAutocompleteFilter()
+        filter.type = .address
+        autocompleteController.autocompleteFilter = filter
+        
+        // Display the autocomplete view controller.
+        present(autocompleteController, animated: true, completion: nil)
+    }
+
 }
 
 extension AddTripView: MKMapViewDelegate {
@@ -212,4 +265,67 @@ extension AddTripView: AddTripViewInterface {
     func didAddTrip() {
         eventHandler!.discardView()
     }
+}
+
+extension AddTripView: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+        print("Place name: \(place.name)")
+        print("Coordinate: \(place.coordinate)")
+        print("Place attributions: \(place.attributions)")
+        print("Formatted Address: \(place.formattedAddress)")
+        print("address component: \(place.addressComponents)")
+        
+        var keys = [String]()
+        place.addressComponents?.forEach{keys.append($0.type)}
+        
+        var values = [String]()
+        place.addressComponents?.forEach({ (component) in
+            keys.forEach{ component.type == $0 ? values.append(component.name): nil}
+        })
+        
+        let cityName = place.addressComponents?.first(where: { $0.type == kGMSPlaceTypeLocality })?.name
+        let placeCoordinates = place.coordinate
+        let placeName = place.name!
+        let address = place.formattedAddress!
+        
+        if activeField == sourceTextField {
+            tripViMo.source.cityName = cityName!
+            tripViMo.source.address = address
+            tripViMo.source.location = placeCoordinates
+            tripViMo.source.placeName = placeName
+        }
+        else {
+            tripViMo.dest.cityName = cityName!
+            tripViMo.dest.address = address
+            tripViMo.dest.location = placeCoordinates
+            tripViMo.dest.placeName = placeName
+        }
+        
+        activeField?.text = placeName
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }

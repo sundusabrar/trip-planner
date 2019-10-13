@@ -67,10 +67,10 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let obj = dataSource[indexPath.section][indexPath.row]
-        cell.tripName.text = obj.source
-        cell.destinationLabel.text = obj.destination
-        cell.departureTime.text = obj.arrivalTime.toString()
-        cell.arrivalTime.text = obj.arrivalTime.toString()
+        cell.tripName.text = obj.tripName
+        cell.destinationLabel.text = obj.dest.cityName
+        cell.departureTime.text = obj.source.tripTime.toString()
+        cell.arrivalTime.text = obj.dest.tripTime.toString()
         
         return cell
     }
