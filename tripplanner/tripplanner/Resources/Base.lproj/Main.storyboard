@@ -21,34 +21,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Xhj-LD-Kwg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="124" estimatedRowHeight="-1" sectionHeaderHeight="30" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xhj-LD-Kwg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="wjU-3S-KzO"/>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="FNU-Bh-bOl"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAW-SQ-lTe">
-                                <rect key="frame" x="328" y="656" width="44" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAW-SQ-lTe" customClass="MDCFloatingButton">
+                                <rect key="frame" x="329" y="640" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="HtD-FN-tIF"/>
-                                    <constraint firstAttribute="width" constant="44" id="Tbz-yZ-phd"/>
+                                    <constraint firstAttribute="height" constant="60" id="HtD-FN-tIF"/>
+                                    <constraint firstAttribute="width" constant="60" id="Tbz-yZ-phd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Add"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="addTripButonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="3PL-vb-mDT"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14970323320000001" green="0.23499246090000001" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vX0-OO-KtA" firstAttribute="top" secondItem="MAW-SQ-lTe" secondAttribute="bottom" constant="25" id="6TW-o7-rRe"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="NlE-CW-8fw"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="top" secondItem="JtF-pz-d03" secondAttribute="bottom" id="ffR-hy-jD4"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ftW-Nn-ubf"/>
-                            <constraint firstAttribute="trailing" secondItem="MAW-SQ-lTe" secondAttribute="trailing" constant="42" id="plB-df-x9C"/>
+                            <constraint firstAttribute="trailing" secondItem="MAW-SQ-lTe" secondAttribute="trailing" constant="25" id="plB-df-x9C"/>
                             <constraint firstItem="Xhj-LD-Kwg" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" id="udn-H1-x2S"/>
                         </constraints>
                     </view>
@@ -106,6 +110,9 @@
                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="bum-b6-TDl" id="Azy-oO-mY5"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4Z-ug-agq" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                                 <rect key="frame" x="20" y="124" width="334" height="44"/>

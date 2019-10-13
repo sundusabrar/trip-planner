@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import MaterialComponents
 
 protocol BookingsViewInterface {
     func presentLoader()
@@ -20,7 +21,7 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
     var presenter: BookingsModuleInterface?
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addTripButton: UIButton!
+    @IBOutlet weak var addTripButton: MDCFloatingButton!
     
     var dataSource = [[TripViMo]]() {
         didSet {
@@ -33,6 +34,7 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
         
         //Register nib for custom cell class
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
+        tableView.tableFooterView = UIView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +78,10 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
         return dataSource[section].count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 124
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as? TripViewCell else {
@@ -84,9 +90,9 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
 
         let obj = dataSource[indexPath.section][indexPath.row]
         cell.tripName.text = obj.tripName
-        cell.destinationLabel.text = obj.dest.cityName
-        cell.departureTime.text = obj.source.tripTime.toString()
-        cell.arrivalTime.text = obj.dest.tripTime.toString()
+        cell.destinationLabel.text = obj.dest.address
+        cell.destinationCity.text = obj.dest.cityName
+        cell.arrivalTime.text = "\(obj.source.tripTime.day).\(obj.source.tripTime.month) - \(obj.dest.tripTime.day).\(obj.dest.tripTime.month)"
         
         return cell
     }
