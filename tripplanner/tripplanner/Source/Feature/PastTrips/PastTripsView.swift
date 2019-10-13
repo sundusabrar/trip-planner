@@ -15,7 +15,11 @@ protocol PastTripViewInterface {
 class PastTripsView: UIViewController, PastTripViewInterface {
 
     var presenter: PastTripModuleInterface?
-    var dataSource = [TripViMo]()
+    var dataSource = [TripViMo](){
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,12 +28,12 @@ class PastTripsView: UIViewController, PastTripViewInterface {
         // Do any additional setup after loading the view.
         
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
+        tableView.tableFooterView = UIView()
         presenter?.loadData()
     }
     
     func didLoadTrips(trips: [TripViMo]) {
         dataSource = trips
-        self.tableView.reloadData()
     }
 }
 
@@ -41,8 +45,11 @@ extension PastTripsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 124
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,8 +60,9 @@ extension PastTripsView: UITableViewDelegate, UITableViewDataSource {
         
         let obj = dataSource[indexPath.row]
         cell.tripName.text = obj.tripName
-        cell.destinationLabel.text = obj.dest.cityName
-        cell.arrivalTime.text = obj.dest.tripTime.toString()
+        cell.destinationLabel.text = obj.dest.address
+        cell.destinationCity.text = obj.dest.cityName
+        cell.arrivalTime.text = "\(obj.source.tripTime.day).\(obj.source.tripTime.month) - \(obj.dest.tripTime.day).\(obj.dest.tripTime.month)"
         
         return cell
     }
