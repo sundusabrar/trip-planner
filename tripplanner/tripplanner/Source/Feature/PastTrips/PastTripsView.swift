@@ -29,6 +29,7 @@ class PastTripsView: UIViewController, PastTripViewInterface {
         
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
         tableView.tableFooterView = UIView()
+        self.navigationItem.title = "Completed Bookings"
         presenter?.loadData()
     }
     

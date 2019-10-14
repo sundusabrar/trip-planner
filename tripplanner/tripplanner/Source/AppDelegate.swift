@@ -22,9 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureAppDependencies()
         GMSPlacesClient.provideAPIKey("")
-        NetworkManager.sharedInstance.listenForReachability()
         NetworkManager.sharedInstance.startUp()
-        
+
         return true
     }
 

@@ -25,20 +25,20 @@ class DataManager {
     func fetchCurrentTrips() -> [Trip] {
         let todayStart = Date().dateAtStartOf(.day)
         let todayEnd = Date().dateAtEndOf(.day)
-        let results = database.objects(Trip.self).filter("self.tripSource.tripTime BETWEEN {%@, %@}", todayStart, todayEnd)
+        let results = database.objects(Trip.self).filter("self.tripSource.tripTime BETWEEN {%@, %@}", todayStart, todayEnd).sorted(byKeyPath: "tripSource.tripTime", ascending: true)
         //filter("departureTime == %@", now)
         return Array(results)
     }
     
     func fetchUpcomingTrips() -> [Trip] {
         let now = Date().dateAtEndOf(.day)
-        let results = database.objects(Trip.self).filter("self.tripSource.tripTime > %@", now)
+        let results = database.objects(Trip.self).filter("self.tripSource.tripTime > %@", now).sorted(byKeyPath: "tripSource.tripTime", ascending: true)
         return Array(results)
     }
     
     func fetchAllPastTrips() -> [Trip] {
         let now = Date().dateAtStartOf(.day)
-        let results = database.objects(Trip.self).filter("self.tripSource.tripTime < %@", now)
+        let results = database.objects(Trip.self).filter("self.tripSource.tripTime < %@", now).sorted(byKeyPath: "tripSource.tripTime", ascending: true)
         return Array(results)
     }
     

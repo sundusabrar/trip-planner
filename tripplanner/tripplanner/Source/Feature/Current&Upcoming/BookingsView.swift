@@ -9,6 +9,7 @@
 import UIKit
 import PKHUD
 import MaterialComponents
+import SwiftIcons
 
 protocol BookingsViewInterface {
     func presentLoader()
@@ -35,6 +36,7 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
         //Register nib for custom cell class
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
         tableView.tableFooterView = UIView()
+        self.navigationItem.title = "Current Bookings"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,10 +69,16 @@ extension BookingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return String(format: "Current trips: \(dataSource[section].count)")
+            if dataSource[section].count == 0 {
+                return String(format: "You do not have any current trips")
+            }
+            return String(format: "Your current trips")
         }
         else {
-            return String(format: "Upcoming Trips: \(dataSource[section].count)")
+            if dataSource[section].count == 0 {
+                return String(format: "You do not have any upcoming trips")
+            }
+            return String(format: "Your upcoming trips: \(dataSource[section].count)")
         }
     }
     

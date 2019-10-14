@@ -52,6 +52,7 @@ class NetworkManager {
     //MARK: App related startup
     
     func startUp() {
+        self.listenForReachability()
         //initialise sync manager
         syncTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(performSyncInBG), userInfo: nil, repeats: true)
     }

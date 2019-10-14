@@ -209,6 +209,7 @@
 		1D2989A2235227080040652E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1D2989A6235264FF0040652E /* DataManager.swift */,
 				1D2989A32352271F0040652E /* Trip.swift */,
 				1D2989AE235319850040652E /* TripLocation.swift */,
 			);
@@ -224,7 +225,6 @@
 				1D2989812351CEC50040652E /* Common */,
 				1D2989A2235227080040652E /* Model */,
 				1D29898F2351E86F0040652E /* Feature */,
-				1D2989A6235264FF0040652E /* DataManager.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
