@@ -29,8 +29,14 @@ class BookingsRouter: NSObject {
     }
     
     func presentAddNewTrip() {
-        let addNewTripRouter = AddTripRouter()
-        addNewTripRouter.rootWireFrame = rootWireframe
-        addNewTripRouter.presentAddTripView(onView: bookingViewController!)
+        if NetworkManager.sharedInstance.isNetworkConnected {
+            let addNewTripRouter = AddTripRouter()
+            addNewTripRouter.rootWireFrame = rootWireframe
+            addNewTripRouter.presentAddTripView(onView: bookingViewController!)
+        }
+        else {
+            print("no internet available")
+            bookingViewController?.presentAlert()
+        }
     }
 }

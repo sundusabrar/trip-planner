@@ -4,22 +4,27 @@
 target 'tripplanner' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  # Pods for tripplanner
 pod 'GooglePlaces'
 pod 'GoogleMaps'
 pod 'SwiftDate', '~> 5.0'
 pod 'Connectivity'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField', '~> 3.0'
+pod 'Realm'
 pod 'RealmSwift'
-  # Pods for tripplanner
 pod 'SwiftIcons', '~> 2.3.2'
 pod 'Alamofire', '~> 4.7.3'
 pod 'AlamofireObjectMapper', '~> 5.1.0'
 pod 'ObjectMapper', '~> 3.3.0'
 pod 'PKHUD'
 pod 'HTTPStatusCodes'
-#pod 'MaterialComponents'
 pod 'MaterialComponents/ShadowElevations'
 pod 'MaterialComponents/Buttons'
+end
+
+
+target 'tripplannerTests' do
+pod 'Realm'
+pod 'RealmSwift'
 end

@@ -11,6 +11,7 @@ import Foundation
 protocol AddTripModuleInterface {
     func discardView()
     func addTripDetail(vimo: TripViMo)
+    func locationFieldBecameActive()
 }
 
 protocol AddTripInteractorOutput {
@@ -34,5 +35,9 @@ class AddTripPresenter: NSObject, AddTripModuleInterface, AddTripInteractorOutpu
     func didAddTripObject() {
         addTripView?.presentSuccessAlert()
         addTripView?.didAddTrip()
+    }
+    
+    func locationFieldBecameActive() {
+        
     }
 }

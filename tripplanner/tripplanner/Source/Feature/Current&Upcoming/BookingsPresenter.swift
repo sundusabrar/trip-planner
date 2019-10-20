@@ -11,6 +11,7 @@ import Foundation
 protocol BookingsModuleInterface {
     func loadData() 
     func presentAddNewTrips()
+    func presentAlert()
 }
 
 protocol BookingsInteractorOutput {
@@ -44,5 +45,9 @@ class BookingsPresenter: NSObject, BookingsModuleInterface, BookingsInteractorOu
     func didLoadTripData(trips: [[TripViMo]]) {
         bookingViewInterface?.removeLoader()
         bookingViewInterface?.didLoadTrips(trips: trips)
+    }
+    
+    func presentAlert() {
+        bookingViewInterface!.presentAlert()
     }
 }

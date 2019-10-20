@@ -60,11 +60,13 @@ class NetworkManager {
     func fetchAllTrips(completion: @escaping () -> Void) {
         if isNetworkConnected {
             Service.instance.fetchAllTrips(completion: { resp in
-                guard let trips = resp.value else {
-                    print("No trips returned")
-                    return
+                if let trips = resp.value {
+                    DataManager.sharedInstance.addTrip(objects: trips.allTrips)
                 }
-                DataManager.sharedInstance.addTrip(objects: trips.allTrips)
+                else {
+                    print("No trips returned")
+                }
+                
                 completion()
             })
         }

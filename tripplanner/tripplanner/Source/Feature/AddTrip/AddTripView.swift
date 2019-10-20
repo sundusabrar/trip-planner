@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import GooglePlaces
+
 import PKHUD
 import MaterialComponents.MaterialButtons
 
@@ -137,7 +138,7 @@ class AddTripView: UIViewController, UITextFieldDelegate {
             //do nothing
         }
         else {
-            launchAutoFillVC()
+            launchAutocomplete()
         }
     }
     
@@ -155,18 +156,17 @@ class AddTripView: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func launchAutoFillVC() {
+    func launchAutocomplete() {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
-        
         // Specify the place data types to return.
         let fields = GMSPlaceField(rawValue:
             UInt(GMSPlaceField.name.rawValue) |
-            UInt(GMSPlaceField.addressComponents.rawValue) |
-            UInt(GMSPlaceField.placeID.rawValue) |
-            UInt(GMSPlaceField.formattedAddress.rawValue) |
-            UInt(GMSPlaceField.photos.rawValue) |
-            UInt(GMSPlaceField.coordinate.rawValue))!
+                UInt(GMSPlaceField.addressComponents.rawValue) |
+                UInt(GMSPlaceField.placeID.rawValue) |
+                UInt(GMSPlaceField.formattedAddress.rawValue) |
+                UInt(GMSPlaceField.photos.rawValue) |
+                UInt(GMSPlaceField.coordinate.rawValue))!
         
         autocompleteController.placeFields = fields
         

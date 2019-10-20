@@ -15,6 +15,7 @@ protocol BookingsViewInterface {
     func presentLoader()
     func removeLoader()
     func didLoadTrips(trips: [[TripViMo]])
+    func presentAlert()
 }
 
 class BookingsViewController: UIViewController, BookingsViewInterface {
@@ -36,7 +37,7 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
         //Register nib for custom cell class
         tableView.register(UINib(nibName: "TripViewCell", bundle: nil), forCellReuseIdentifier: "TripCell")
         tableView.tableFooterView = UIView()
-        self.navigationItem.title = "Current Bookings"
+        self.navigationItem.title = "Current Trips"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +59,10 @@ class BookingsViewController: UIViewController, BookingsViewInterface {
     
     func removeLoader() {
         HUD.hide()
+    }
+    
+    func presentAlert() {
+        HUD.flash(.error)
     }
 }
 
